@@ -133,12 +133,12 @@ export default function AddActivityView() {
 							</div>
 						)}
 						<div className={s.addMargin}>
-							<label>Season: </label>
 							<select className={s.selectcss} name='season' onChange={(ev) => handleChangeNew(ev)}>
 								{['All','Summer','Winter','Spring','Autnum'].map((el) =>
 									<option key={el} value={el}>{el}</option>
 								)}
 							</select>
+							<label> Season</label>
 						</div>
 					</div>
 				} 
