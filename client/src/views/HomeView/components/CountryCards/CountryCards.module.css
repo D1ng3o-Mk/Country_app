@@ -1,0 +1,16 @@
+.container{
+	width: 100%;
+	justify-content: center;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(4,220px);
+	grid-template-rows: repeat(3,auto)
+} 
+
+
+
+h2{
+	font-size: 50px;
+	grid-column:3/4 ;
+	grid-row: 2/3;
+}

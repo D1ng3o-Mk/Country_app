@@ -1,0 +1,13 @@
+.container{
+    background-color: rgba(0, 0, 0, 0.876);
+    height: 100%;
+    width: 100%;
+
+}
+.copy{
+    text-align: center;
+    font-size: 20px;
+    color: blanchedalmond;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+} 

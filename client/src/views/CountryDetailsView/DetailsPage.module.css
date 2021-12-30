@@ -1,0 +1,26 @@
+.container {
+	background-image:linear-gradient(to right bottom, #0c0c0c65, #f8f7f667), url('../../assets/landingPageBg.jpg');
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.title {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.goBack {
+	padding: 6px;
+	width: 120px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	font-family: 'calibri';
+	margin: 10px;
+	background-color: #F2F3F4;
+}
+
+.goBack:hover {
+	background-color: #8a8a8a;
+}

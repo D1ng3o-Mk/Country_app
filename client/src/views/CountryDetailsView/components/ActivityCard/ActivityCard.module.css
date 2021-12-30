@@ -1,0 +1,23 @@
+.container {
+	background-color: #c8c7c5e1;
+	width: 250px;
+	height: 220px;
+	margin-left: 20px;
+	margin-right: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 45px;
+	font-family: 'calibri';
+}
+
+.data {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.title {
+	font-size: 25px;
+}

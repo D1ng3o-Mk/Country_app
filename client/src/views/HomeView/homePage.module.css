@@ -1,0 +1,79 @@
+.container {
+	background-image:linear-gradient(to right bottom, #0c0c0c65, #f8f7f667), url('../../assets/landingPageBg.jpg');
+	width: 100%;
+	height:auto;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, auto);
+	grid-template-areas: 
+						"navbar navbar navbar navbar"
+						"filterbar cards cards cards"
+						"footer footer footer footer"
+						;
+}
+
+.navbar {
+	width: 100%;
+	background-color: rgba(251, 227, 4, 0.849);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height:  80px;
+	grid-area: navbar;
+}
+
+.searchAndAdd {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 550px;
+	margin-right: 20px;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	color:black;
+	margin-top: 15px;
+}
+
+.btn {
+	padding: 6px;
+	width: 200px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+	background-color: #F2F3F4;
+	border-bottom:2px solid;
+}
+
+.btn:hover {
+	background-color: #E5E7E9;
+}
+
+.container .filterbar{
+	grid-area: filterbar;
+
+} 
+.container .cards{
+	grid-area:cards;
+
+} 
+.container .footer{
+	grid-area: footer;
+	
+}
+.cards .pagenavbar{
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+}
+.cards .pagenavbar2{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+}
