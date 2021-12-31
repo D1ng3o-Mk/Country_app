@@ -68,8 +68,8 @@ export default function FilterBar() {
 				<label>Order by: </label>
 				<select className={s.selectcss} name='order' onChange={(ev) => handleChange(ev)}>
 					<option value=''>Default</option>
-					<option value='alph_asc'>Alphabetical Asc.</option>
-					<option value='alph_desc'>Alphabetical Desc.</option>
+					<option value='alph_asc'>Alph Asc.</option>
+					<option value='alph_desc'>Alph Desc.</option>
 					<option value='population_asc'>Population Asc.</option>
 					<option value='population_desc'>Population Desc.</option>
 				</select>

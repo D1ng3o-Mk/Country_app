@@ -1,4 +1,4 @@
-import { GET_ALL_COUNTRIES,SEARCH_COUNTRIES,GET_DETAILS,GET_ALL_ACTIVITIES,GET_ALL_REGIONS,APPLY_FILTERS} from '../../consts/actions';
+import { GET_ALL_COUNTRIES , SEARCH_COUNTRIES, GET_DETAILS, GET_ALL_ACTIVITIES, GET_ALL_REGIONS, APPLY_FILTERS} from '../../consts/actions';
 
 const initialState = {
 	countriesLoaded: [],
@@ -56,10 +56,10 @@ function reducer(state = initialState, action) {
 				}
 			}
 			
-			if (f.order === 'alp_asc') {
+			if (f.order === 'alph_asc') {
 				matches.sort((a,b) => a.name.localeCompare(b.name));
 			} 
-			else if (f.order === 'alp_desc') {
+			else if (f.order === 'alph_desc') {
 				matches.sort((a,b) => b.name.localeCompare(a.name));
 			} 
 			else if (f.order === 'population_asc') {

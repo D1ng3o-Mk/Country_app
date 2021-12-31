@@ -22,7 +22,7 @@ export default function HomeView() {
 				<div className={s.searchAndAdd}>
 					<SearchBar />
 					<Link to='/add'>
-						<button className={s.btn}>Add new tourist activity</button>
+						<button className={s.btn}>New tourist activity</button>
 					</Link>
 				</div>
 			</div>
