@@ -23,6 +23,17 @@
 	grid-area: navbar;
 }
 
+.navbar .icon{
+	font-size: 30px;
+	margin-left:5px;
+}
+.searchAndAdd .iconglass{
+
+	position: absolute;
+	font-size: 30px;
+	
+	right:580px;
+}
 .searchAndAdd {
 	display: flex;
 	flex-direction: row;

@@ -3,11 +3,14 @@ import { useLocation, useHistory } from 'react-router-dom';
 import s from './PagesNavBar.module.css'
 
 export default function PagesNavBar() {	
+	
 	const history = useHistory();
 	const location = useLocation();
 	const query = new URLSearchParams(location.search);
 	let currPage = parseInt(query.get('page')) || 1;
+
 	const countries = useSelector(state => state.countriesLoaded);
+	
 	let totalPages = Math.ceil(countries.length / 10);
 	function handlePagination(pageNumber) {
 		query.set('page', pageNumber);

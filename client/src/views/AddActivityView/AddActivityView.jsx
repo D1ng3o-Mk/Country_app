@@ -15,11 +15,13 @@ export default function AddActivityView() {
 	}, [dispatch]);
 	const [createNew, setCreateNew] = useState(false);
 	const [activity, setActivity] = useState({
+
 		name: '',
 		difficult: '',
 		duration: '',
 		season: 'All',
 		countries: ''
+	
 	});
 	const [error, setError] = useState('Fill in the fields');
 
@@ -71,18 +73,19 @@ export default function AddActivityView() {
 	}
 
 	function validation(input) 
+	//validation 
 	{
 		if (!input.name) return 'Name is required.';
 		if (input.name.length > 20) return 'Name length limit exceeded';
 		if (!input.difficult) return 'Difficult is required.';
-		if (isNaN(input.difficult)) return 'Difficult must be a number.'
-		if (input.difficult < 0 || input.difficult > 10) return 'Difficult range is from 0 to 5.'
-		if (!input.duration) return 'Duration is required.'
-		if (isNaN(input.duration)) return 'Duration must be a number.'
-		if (input.duration < 0) return 'Duration must be greater than 0.'
+		if (isNaN(input.difficult)) return 'Difficult must be a number.';
+		if (input.difficult < 0 || input.difficult > 5) return 'Difficult range is from 0 to 5.';
+		if (!input.duration) return 'Duration is required.';
+		if (isNaN(input.duration)) return 'Duration must be a number.';
+		if (input.duration < 0) return 'Duration must be greater than 0.';
 		return '';
 	}
-
+	//validation
 	return (
 		<div className={s.container}>
 			<form className={s.activityForm} onSubmit={(ev) => handleSubmit(ev)}>

@@ -14,6 +14,8 @@
   	width: 200px;
   	border: 1px solid #aaa;
 	border-bottom:2px solid;
+	border-radius: 5px;
+	margin-right: 10px;
 }
 
 .btn {
