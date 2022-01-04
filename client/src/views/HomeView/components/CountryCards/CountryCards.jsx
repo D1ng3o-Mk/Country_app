@@ -44,7 +44,7 @@ export default function Cards() {
 	}, [query, countries])
 		return(
 		<div className={s.container}>	
-			{ page?.length === 0 && <h2> Countries not found :/ </h2> }
+			{ page?.length === 0 && <h2 className={s.nofound}> Countries not found :/ </h2> }
 	
 			{ page?.map (c => 
 				<Card 

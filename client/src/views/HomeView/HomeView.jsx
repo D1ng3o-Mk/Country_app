@@ -5,7 +5,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import PagesNavBar from './components/PagesNavBar/PagesNavBar'
 import FilterBar from './components/FilterBar/FilterBar';
 import Footer from './components/Footer/Footer';
-import {FaGlobeAsia,FaSearchLocation} from 'react-icons/fa';
+
 
 
 import s from './homePage.module.css';
@@ -19,13 +19,13 @@ export default function HomeView() {
 					<div className={s.title}>
 						
 						<h1>Countries App</h1>
-						 <FaGlobeAsia className={s.icon}/>
+						
 
 					</div>
 				</Link>
 
 				<div className={s.searchAndAdd}>
-					<FaSearchLocation className={s.iconglass}/>
+					
 					<SearchBar />
 					
 					<Link to='/add'>

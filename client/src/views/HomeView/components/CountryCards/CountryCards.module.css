@@ -9,8 +9,11 @@
 
 
 
-h2{
+.nofound{ width: 1000px;
+	height: 900px;
 	font-size: 50px;
-	grid-column:3/4 ;
-	grid-row: 2/3;
+	text-align: center;
+	
+
+	
 }

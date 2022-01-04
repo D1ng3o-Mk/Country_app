@@ -99,8 +99,10 @@ export default function AddActivityView() {
 					<div className={s.addMargin}>
 						<label>Use already created activity: </label>
 						<select className={s.selectcss} onChange={(ev) => handleChange(ev)}>
+									<option></option> 
 							{
-								allActivities?.map((el) => 
+								allActivities?.map((el) =>
+									
 									<option 
 										key={el.id} 
 										value={el.id}
@@ -148,6 +150,7 @@ export default function AddActivityView() {
 				<div className={s.addMargin}>
 					<label>Countries related to this activity:</label> <br />
 					<select className={s.selectcssc} onChange={(ev) => handleSelect(ev)} multiple>
+								<option></option>
 						{
 							allCountries?.map((el) => 
 								<option 
@@ -161,7 +164,7 @@ export default function AddActivityView() {
 
 				<br/>
 				{ 
-					error ? <p className={s.errMsg}>{error}</p> : <button className={s.btn} type='submit'>Add</button>
+					error ? <p className={s.errMsg}>{error}</p> : <div className={s.conbtn}><button className={s.btna} type='submit'>Add</button><span> use shift and select all</span></div>
 				}
 
 			</form>

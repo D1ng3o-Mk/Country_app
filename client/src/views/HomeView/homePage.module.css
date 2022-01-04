@@ -1,11 +1,13 @@
 .container {
 	background-image:linear-gradient(to right bottom, #0c0c0c65, #f8f7f667), url('../../assets/landingPageBg.jpg');
+	
 	width: 100%;
-	height:auto;
+	height: auto;
 	display: grid;
 	grid-gap: 10px;
+	
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3, auto);
+	grid-template-rows: repeat(3,auto);
 	grid-template-areas: 
 						"navbar navbar navbar navbar"
 						"filterbar cards cards cards"
@@ -23,17 +25,6 @@
 	grid-area: navbar;
 }
 
-.navbar .icon{
-	font-size: 30px;
-	margin-left:5px;
-}
-.searchAndAdd .iconglass{
-
-	position: absolute;
-	font-size: 30px;
-	
-	right:580px;
-}
 .searchAndAdd {
 	display: flex;
 	flex-direction: row;
@@ -75,6 +66,7 @@
 } 
 .container .footer{
 	grid-area: footer;
+	
 	
 }
 .cards .pagenavbar{
