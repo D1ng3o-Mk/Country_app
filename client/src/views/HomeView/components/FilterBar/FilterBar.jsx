@@ -6,14 +6,17 @@ import { useLocation, useHistory } from 'react-router-dom';
 import s from './FilterBar.module.css';
 
 export default function FilterBar() {
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const location = useLocation();
 	const query = new URLSearchParams(location.search);
+
 	useEffect(() => {
 		dispatch(getAllActivities());
 		dispatch(getAllRegions());
 	}, [dispatch])
+	
 	const activities = useSelector(state => state.allActivities);
 	const regions = useSelector(state => state.allRegions);
 	const [filters, setFilters] = useState({

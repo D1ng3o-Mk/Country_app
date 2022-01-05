@@ -1,4 +1,10 @@
-import { GET_ALL_COUNTRIES , SEARCH_COUNTRIES, GET_DETAILS, GET_ALL_ACTIVITIES, GET_ALL_REGIONS, APPLY_FILTERS} from '../../consts/actions';
+import { GET_ALL_COUNTRIES , 
+	SEARCH_COUNTRIES, 
+	GET_DETAILS, 
+	GET_ALL_ACTIVITIES, 
+	GET_ALL_REGIONS,
+	POST_ACTIVITY, 
+	APPLY_FILTERS} from '../../consts/actions';
 
 const initialState = {
 	countriesLoaded: [],
@@ -48,6 +54,7 @@ function reducer(state = initialState, action) {
 			const regionFilter = f.region !== '' ? state.allCountries.filter(e => e.subregion.region.name === f.region ) : [...state.allCountries];
 			const activityFilter = f.activity !== '' ? state.allCountries.filter(e => e.activities.some(a => a.name === f.activity)) : [...state.allCountries];
 			const matches = [];
+			
 			for (let i = 0; i < regionFilter.length; i++) {
 				for (let j = 0; j < activityFilter.length; j++) {
 					if (regionFilter[i].id === activityFilter[j].id) {
@@ -72,7 +79,12 @@ function reducer(state = initialState, action) {
 			return ({
 				...state,
 				countriesLoaded: matches
-			})		
+			})
+			case POST_ACTIVITY:
+				return ({
+					...state,
+					allActivities: [...state.allActivities,action.payload]
+				})		
 		default:
 
 			return ({...state});

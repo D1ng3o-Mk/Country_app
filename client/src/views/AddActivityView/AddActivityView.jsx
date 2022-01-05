@@ -4,15 +4,20 @@ import { getAllCountries, postActivity, getAllActivities } from '../../stateMana
 import {useHistory} from 'react-router-dom';
 import s from './AddPage.module.css';
 
+
+
 export default function AddActivityView() {
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const allCountries = useSelector(state => state.allCountries);
 	const allActivities = useSelector(state => state.allActivities);
+	
 	useEffect(() => {
 		dispatch(getAllCountries());
 		dispatch(getAllActivities());
 	}, [dispatch]);
+
 	const [createNew, setCreateNew] = useState(false);
 	const [activity, setActivity] = useState({
 
@@ -26,6 +31,7 @@ export default function AddActivityView() {
 	const [error, setError] = useState('Fill in the fields');
 
 	function handleChangeNew(ev) {
+
 		setActivity({
 			...activity,
 			[ev.target.name]: ev.target.value
@@ -37,6 +43,7 @@ export default function AddActivityView() {
 	}
 
 	function handleChange(ev) {
+
 		if (ev.target.value !== "") {
 			let found = allActivities.find((el) => el.id.toString() === ev.target.value);
 			setActivity({
@@ -58,6 +65,7 @@ export default function AddActivityView() {
 			setError('Fill in the fields')
 		}
 		
+		
 	}
 
 	function handleSelect(ev) {
@@ -70,6 +78,15 @@ export default function AddActivityView() {
 	function handleSubmit(ev) {
 		ev.preventDefault();
 		dispatch(postActivity(activity));
+		setActivity({
+			name: '',
+			difficult: '',
+			duration: '',
+			season: 'All',
+			countries: ''
+		})
+
+			
 	}
 
 	function validation(input) 
@@ -86,20 +103,29 @@ export default function AddActivityView() {
 		return '';
 	}
 	//validation
+	
 	return (
+
 		<div className={s.container}>
+
 			<form className={s.activityForm} onSubmit={(ev) => handleSubmit(ev)}>
+
 				<h2 className={s.addMargin}>Activity</h2>
 				{
 					!createNew && <div>
+
 					<div className={s.addMargin}>
+
 						<label>New activity: </label>
 						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Create</button>
+
 					</div>
+
 					<div className={s.addMargin}>
+
 						<label>Use already created activity: </label>
 						<select className={s.selectcss} onChange={(ev) => handleChange(ev)}>
-									<option></option> 
+									<option>---select---</option> 
 							{
 								allActivities?.map((el) =>
 									
@@ -116,13 +142,19 @@ export default function AddActivityView() {
 				{
 					createNew && <div className={s.addMargin}>
 						<label>Use already created activity: </label>
+				
 						<button className={s.btnd} onClick={() => setCreateNew(!createNew)}>Do it</button>
+						
+
 					</div>
 				}
 				{
 					createNew && <div>
+
 						{['name','difficult','duration'].map((el) => 
+						
 							<div className={s.addMargin} key={el}>
+
 								<input 
 									className={s.input}
 									type='text' 
@@ -132,25 +164,35 @@ export default function AddActivityView() {
 									value={activity[el]} 
 									onChange={(ev) => handleChangeNew(ev)}
 								/>
+
 								{el === 'name'}
 								{el === 'difficult' && <label> 0-5</label>}
 								{el === 'duration' && <label> in minutes</label>}
+
 							</div>
 						)}
 						<div className={s.addMargin}>
+
 							<select className={s.selectcss} name='season' onChange={(ev) => handleChangeNew(ev)}>
 								{['All','Summer','Winter','Spring','Autnum'].map((el) =>
-									<option key={el} value={el}>{el}</option>
+									<option
+									 key={el} 
+									 value={el}>
+										{el}
+									 </option>
 								)}
 							</select>
 							<label> Season</label>
+
 						</div>
 					</div>
 				} 
 				<div className={s.addMargin}>
+
 					<label>Countries related to this activity:</label> <br />
+
 					<select className={s.selectcssc} onChange={(ev) => handleSelect(ev)} multiple>
-								<option></option>
+								<option>---Countries---</option>
 						{
 							allCountries?.map((el) => 
 								<option 
@@ -160,16 +202,19 @@ export default function AddActivityView() {
 							)
 						}
 					</select> <br />
+
 				</div>
 
 				<br/>
 				{ 
-					error ? <p className={s.errMsg}>{error}</p> : <div className={s.conbtn}><button className={s.btna} type='submit'>Add</button><span> use shift and select all</span></div>
+					error ? <p className={s.errMsg}>{error}</p> : <div className={s.conbtn}><button className={s.btna} type='submit'>Add</button></div>
 				}
 
 			</form>
 			<br />
+
 			<button className={s.btnb} onClick={() => history.goBack()}>Go Back</button>
+
 		</div>
 	)
 }

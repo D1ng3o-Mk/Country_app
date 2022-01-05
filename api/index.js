@@ -2,14 +2,28 @@ const server = require('./src/app');
 const { conn } = require('./src/db'); 
 const axios = require('axios');
 const { Country , Region , Subregion } = require('./src/db'); 
-
+const respaldo = require("./respaldo/all_countries.json") // respaldo
 const pre_loader = async () => {
 
   try {
     
-    const countries = await axios.get('https://restcountries.com/v3/all');
+    let resp={};
+    
+    const {data} = await axios.get('https://restcountries.com/v3/all');
 
-    for (let country of countries.data) {
+    if(data.length==0){
+      resp.data = respaldo;
+      //console.log(resp.data);
+      console.log("Usando respaldo");
+    }
+
+    else{
+      resp.data = data;
+      //console.log(resp.data);
+      console.log("Api funcionando");
+    }
+    
+    for (let country of resp.data) {
 
       let { cca3, name, flags, capital, region, subregion, population,area } = country;
       let [countryRes, created] = await Country.findOrCreate({
@@ -51,12 +65,12 @@ const pre_loader = async () => {
   }
   catch (err) {
    console.error(err);
-  }  
-};
+  }
+}
 
-
-
+//reiniciar la app cada vez que se inicia = true y mantener los datos guardados = false
 conn.sync({ force: true })
+
 .then(() => {
   pre_loader();
   server.listen(3001, () => {

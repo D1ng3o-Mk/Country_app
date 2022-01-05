@@ -13,61 +13,71 @@ export function getAllCountries() {
 }
 
 export function searchCountries(country) {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/countries?name=' + country)
-		.then((res) => {
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/countries?name=' + country);
 			dispatch({ type: SEARCH_COUNTRIES, payload: res.data });
-		})
-		.catch((err) => console.error(err));
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 
 export function getDetails(id) {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/countries/' + id)
-		.then((res) => {
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/countries/' + id);
 			dispatch({ type: GET_DETAILS, payload: res.data });
-		})
-		.catch((err) => console.error(err));
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 
 export function postActivity(obj) {
-	return function (dispatch) {
-		return axios.post('http://localhost:3001/activity', obj)
-		.then((res) => {
-			dispatch({ type: POST_ACTIVITY, payload: res.data })
-		})
-		.catch((err) => console.error(err));
+	return async function (dispatch) {
+		
+		try {
+			const res = await axios.post('http://localhost:3001/activity', obj);
+			console.log(res.data)
+			dispatch({ type: POST_ACTIVITY, payload: res.data });
+
+
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 
 export function getAllActivities() {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/activity')
-		.then((res) => {
-			dispatch({ type: GET_ALL_ACTIVITIES, payload: res.data })
-		})
-		.catch((err) => console.error(err));
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/activity');
+			dispatch({ type: GET_ALL_ACTIVITIES, payload: res.data });
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 
 export function getAllRegions() {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/regions')
-		.then((res) => {
-			dispatch({ type: GET_ALL_REGIONS, payload: res.data })
-		})
-		.catch((err) => console.error(err));
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/regions');
+			dispatch({ type: GET_ALL_REGIONS, payload: res.data });
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 
 export function applyFilters(payload) {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/regions')
-		.then((res) => {
-			dispatch({ type: APPLY_FILTERS, payload })
-		})
-		.catch((err) => console.error(err));
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/regions');
+			dispatch({ type: APPLY_FILTERS, payload });
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }

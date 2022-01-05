@@ -19,7 +19,8 @@ export default function CountryDetailsView() {
 	return (
 		<div className={s.container}>
 			<h1 className={s.title}>Country Details</h1>
-			<DetailsCard 
+			<DetailsCard
+			 
 				id={c.id} 
 				name={c.name} 
 				flag={c.flag} 
