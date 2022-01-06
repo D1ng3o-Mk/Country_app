@@ -3,12 +3,13 @@ import { GET_ALL_COUNTRIES,SEARCH_COUNTRIES,GET_DETAILS,POST_ACTIVITY,GET_ALL_AC
 } from '../../consts/actions';
 
 export function getAllCountries() {
-	return function(dispatch) {
-		return axios.get('http://localhost:3001/countries')
-		.then((res) => {
+	return async function(dispatch) {
+		try {
+			const res = await axios.get('http://localhost:3001/countries');
 			dispatch({ type: GET_ALL_COUNTRIES, payload: res.data });
-		})
-		.catch((err) => console.error(err));
+		} catch (err) {
+			return console.error(err);
+		}
 	}
 }
 

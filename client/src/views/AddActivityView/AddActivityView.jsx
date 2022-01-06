@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllCountries, postActivity, getAllActivities } from '../../stateManagement/actions';
+import { getAllCountries, postActivity, getAllActivities} from '../../stateManagement/actions';
 import {useHistory} from 'react-router-dom';
 import s from './AddPage.module.css';
 
@@ -11,14 +11,12 @@ export default function AddActivityView() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const allCountries = useSelector(state => state.allCountries);
-	const allActivities = useSelector(state => state.allActivities);
-	
+
 	useEffect(() => {
 		dispatch(getAllCountries());
 		dispatch(getAllActivities());
 	}, [dispatch]);
 
-	const [createNew, setCreateNew] = useState(false);
 	const [activity, setActivity] = useState({
 
 		name: '',
@@ -42,32 +40,6 @@ export default function AddActivityView() {
 		}));
 	}
 
-	function handleChange(ev) {
-
-		if (ev.target.value !== "") {
-			let found = allActivities.find((el) => el.id.toString() === ev.target.value);
-			setActivity({
-				...activity,
-				...found
-			});
-			setError(validation({
-				...activity,
-				...found
-			}))
-		} else {
-			setActivity({
-				...activity,
-				name: '',
-				difficult: '',
-				duration: '',
-				season: 'All'
-				})
-			setError('Fill in the fields')
-		}
-		
-		
-	}
-
 	function handleSelect(ev) {
 		setActivity({
 			...activity,
@@ -77,59 +49,39 @@ export default function AddActivityView() {
 
 	function handleSubmit(ev) {
 		ev.preventDefault();
-		dispatch(postActivity(activity));			
+		dispatch(postActivity(activity));
+		alert("Tu Actividad A sido creada")
+		history.push("/home")			
 	}
 
 	function validation(input) 
-	//validation 
+
 	{
 		if (!input.name) return 'Name is required.';
 		if (input.name.length > 20) return 'Name length limit exceeded';
 		if(!isNaN(input.name)) return"Name must be a letter"
+
 		if (!input.difficult) return 'Difficult is required.';
 		if (isNaN(input.difficult)) return 'Difficult must be a number.';
 		if (input.difficult < 0 || input.difficult > 5) return 'Difficult range is from 0 to 5.';
+
 		if (!input.duration) return 'Duration is required.';
 		if (isNaN(input.duration)) return 'Duration must be a number.';
 		if (input.duration < 0) return 'Duration must be greater than 0.';
 		return '';
 	}
-	//validation
 	
 	return (
+
 		<div className={s.container}>
 			<form className={s.activityForm} onSubmit={(ev) => handleSubmit(ev)}>
 				<h2 className={s.addMargin}>Activity Form</h2>
-				{
-					!createNew && <div>
-					<div className={s.addMargin}>
-						<label> Create new activity: </label>
-						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Create</button>
+					<div>
+						<div>
+							<label> Create new activity: </label>
+						</div>
 					</div>
-					<div className={s.addMargin}>
-						<label>Use already created activity: </label>
-						<select className={s.selectcss} onChange={(ev) => handleChange(ev)}>
-							<option value=""></option>
-							{
-								allActivities?.map((el) => 
-									<option 
-										key={el.id} 
-										value={el.id}
-									>{el.name}</option>
-								)
-							}
-						</select>
-					</div>
-					</div>
-				}
-				{
-					createNew && <div className={s.addMargin}>
-						<label>Use already created activity: </label>
-						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Do it</button>
-					</div>
-				}
-				{
-					createNew && <div>
+					<div>
 						{['name','difficult','duration'].map((el) => 
 							<div className={s.addMargin} key={el}>
 								<input 
@@ -145,7 +97,7 @@ export default function AddActivityView() {
 								{el === 'duration' && <label> in minutes</label>}
 							</div>
 						)}
-						<div className={s.addMargin}>
+						<div>
 							<label>Season: </label>
 							<select className={s.selectcss} name='season' onChange={(ev) => handleChangeNew(ev)}>
 								{['All','Summer','Winter','Spring','Autnum'].map((el) =>
@@ -154,8 +106,7 @@ export default function AddActivityView() {
 							</select>
 						</div>
 					</div>
-				} 
-				<div className={s.addMargin}>
+				<div >
 					<label>Countries related to this activity:</label> <br />
 					<select className={s.selectcssc} onChange={(ev) => handleSelect(ev)} multiple>
 						<option value=""></option>
@@ -176,7 +127,6 @@ export default function AddActivityView() {
 				}
 			</form>
 			<br />
-
 			<button className={s.btn} onClick={() => history.goBack()}>Go Back</button>
 		</div>
 	)
