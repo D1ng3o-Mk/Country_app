@@ -50,8 +50,16 @@ export default function AddActivityView() {
 	function handleSubmit(ev) {
 		ev.preventDefault();
 		dispatch(postActivity(activity));
-		alert("Tu Actividad A sido creada")
-		history.push("/home")			
+		setActivity({
+			name: '',
+			difficult: '',
+			duration: '',
+			season: 'All',
+			countries: ''
+
+		})
+		alert("successfully created activity")
+		
 	}
 
 	function validation(input) 
@@ -68,6 +76,7 @@ export default function AddActivityView() {
 		if (!input.duration) return 'Duration is required.';
 		if (isNaN(input.duration)) return 'Duration must be a number.';
 		if (input.duration < 0) return 'Duration must be greater than 0.';
+
 		return '';
 	}
 	
@@ -83,7 +92,7 @@ export default function AddActivityView() {
 					</div>
 					<div>
 						{['name','difficult','duration'].map((el) => 
-							<div className={s.addMargin} key={el}>
+							<div key={el}>
 								<input 
 									className={s.input}
 									type='text' 
@@ -110,6 +119,7 @@ export default function AddActivityView() {
 					<label>Countries related to this activity:</label> <br />
 					<select className={s.selectcssc} onChange={(ev) => handleSelect(ev)} multiple>
 						<option value=""></option>
+						
 						{
 							allCountries?.map((el) => 
 								<option 
@@ -118,6 +128,7 @@ export default function AddActivityView() {
 								>{el.name}</option>
 							)
 						}
+
 					</select> <br />
 					<label className={s.smallLetter}>Hold down the Ctrl button to select multiple options.</label>
 				</div>
