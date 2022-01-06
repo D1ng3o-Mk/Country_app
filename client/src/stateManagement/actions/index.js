@@ -72,10 +72,10 @@ export function getAllRegions() {
 }
 
 export function applyFilters(payload) {
-	return async function(dispatch) {
+	return function(dispatch) {
 		try {
-			const res = await axios.get('http://localhost:3001/regions');
-			dispatch({ type: APPLY_FILTERS, payload });
+			const res = axios.get('http://localhost:3001/regions');
+			dispatch({ type: APPLY_FILTERS, payload, res});
 		} catch (err) {
 			return console.error(err);
 		}

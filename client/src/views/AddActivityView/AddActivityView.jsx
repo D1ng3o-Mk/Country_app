@@ -77,16 +77,7 @@ export default function AddActivityView() {
 
 	function handleSubmit(ev) {
 		ev.preventDefault();
-		dispatch(postActivity(activity));
-		setActivity({
-			name: '',
-			difficult: '',
-			duration: '',
-			season: 'All',
-			countries: ''
-		})
-
-			
+		dispatch(postActivity(activity));			
 	}
 
 	function validation(input) 
@@ -94,6 +85,7 @@ export default function AddActivityView() {
 	{
 		if (!input.name) return 'Name is required.';
 		if (input.name.length > 20) return 'Name length limit exceeded';
+		if(!isNaN(input.name)) return"Name must be a letter"
 		if (!input.difficult) return 'Difficult is required.';
 		if (isNaN(input.difficult)) return 'Difficult must be a number.';
 		if (input.difficult < 0 || input.difficult > 5) return 'Difficult range is from 0 to 5.';
@@ -105,30 +97,21 @@ export default function AddActivityView() {
 	//validation
 	
 	return (
-
 		<div className={s.container}>
-
 			<form className={s.activityForm} onSubmit={(ev) => handleSubmit(ev)}>
-
-				<h2 className={s.addMargin}>Activity</h2>
+				<h2 className={s.addMargin}>Activity Form</h2>
 				{
 					!createNew && <div>
-
 					<div className={s.addMargin}>
-
-						<label>New activity: </label>
+						<label> Create new activity: </label>
 						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Create</button>
-
 					</div>
-
 					<div className={s.addMargin}>
-
 						<label>Use already created activity: </label>
 						<select className={s.selectcss} onChange={(ev) => handleChange(ev)}>
-									<option>---select---</option> 
+							<option value=""></option>
 							{
-								allActivities?.map((el) =>
-									
+								allActivities?.map((el) => 
 									<option 
 										key={el.id} 
 										value={el.id}
@@ -142,19 +125,13 @@ export default function AddActivityView() {
 				{
 					createNew && <div className={s.addMargin}>
 						<label>Use already created activity: </label>
-				
-						<button className={s.btnd} onClick={() => setCreateNew(!createNew)}>Do it</button>
-						
-
+						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Do it</button>
 					</div>
 				}
 				{
 					createNew && <div>
-
 						{['name','difficult','duration'].map((el) => 
-						
 							<div className={s.addMargin} key={el}>
-
 								<input 
 									className={s.input}
 									type='text' 
@@ -164,35 +141,24 @@ export default function AddActivityView() {
 									value={activity[el]} 
 									onChange={(ev) => handleChangeNew(ev)}
 								/>
-
-								{el === 'name'}
 								{el === 'difficult' && <label> 0-5</label>}
 								{el === 'duration' && <label> in minutes</label>}
-
 							</div>
 						)}
 						<div className={s.addMargin}>
-
+							<label>Season: </label>
 							<select className={s.selectcss} name='season' onChange={(ev) => handleChangeNew(ev)}>
 								{['All','Summer','Winter','Spring','Autnum'].map((el) =>
-									<option
-									 key={el} 
-									 value={el}>
-										{el}
-									 </option>
+									<option key={el} value={el}>{el}</option>
 								)}
 							</select>
-							<label> Season</label>
-
 						</div>
 					</div>
 				} 
 				<div className={s.addMargin}>
-
 					<label>Countries related to this activity:</label> <br />
-
 					<select className={s.selectcssc} onChange={(ev) => handleSelect(ev)} multiple>
-								<option>---Countries---</option>
+						<option value=""></option>
 						{
 							allCountries?.map((el) => 
 								<option 
@@ -202,19 +168,16 @@ export default function AddActivityView() {
 							)
 						}
 					</select> <br />
-
+					<label className={s.smallLetter}>Hold down the Ctrl button to select multiple options.</label>
 				</div>
-
 				<br/>
 				{ 
-					error ? <p className={s.errMsg}>{error}</p> : <div className={s.conbtn}><button className={s.btna} type='submit'>Add</button></div>
+					error ? <p className={s.errMsg}>{error}</p> : <button className={s.btn} type='submit'>Add</button>
 				}
-
 			</form>
 			<br />
 
-			<button className={s.btnb} onClick={() => history.goBack()}>Go Back</button>
-
+			<button className={s.btn} onClick={() => history.goBack()}>Go Back</button>
 		</div>
 	)
 }

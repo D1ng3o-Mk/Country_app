@@ -80,11 +80,11 @@ function reducer(state = initialState, action) {
 				...state,
 				countriesLoaded: matches
 			})
-			case POST_ACTIVITY:
+			/*case POST_ACTIVITY:
 				return ({
 					...state,
 					allActivities: [...state.allActivities,action.payload]
-				})		
+				})*/		
 		default:
 
 			return ({...state});
