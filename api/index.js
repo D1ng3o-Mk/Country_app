@@ -69,7 +69,7 @@ const pre_loader = async () => {
 }
 
 //reiniciar la app cada vez que se inicia = true y mantener los datos guardados = false
-conn.sync({ force: true })
+conn.sync({ force: true})
 
 .then(() => {
   pre_loader();

@@ -9,7 +9,8 @@ const getall = (req, res, next) => {
 	if (name) {
 
 		return Country.findAll({
-			where: { name: { [Op.iLike]: `%${name}%` } },
+			where: { name: { [Op.iLike]: `%${poblation}%` } },
+			//where: {population: {[Op.gt]:name} },
 			include: {
 				model: Subregion,
 				attributes: ['name'],

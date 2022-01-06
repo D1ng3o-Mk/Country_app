@@ -8,4 +8,5 @@ router.get('/', getall);
 router.get('/:idCountry', getallbyid);
 
 
+
 module.exports = router;

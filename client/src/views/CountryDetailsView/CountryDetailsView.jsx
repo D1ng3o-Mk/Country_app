@@ -9,6 +9,7 @@ import { getDetails } from '../../stateManagement/actions';
 import s from './DetailsPage.module.css';
 
 export default function CountryDetailsView() {
+	
 	const history = useHistory();
 	const { id } = useParams();
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function CountryDetailsView() {
 		dispatch(getDetails(id))
 	}, [dispatch, id])
 	let c = useSelector(state => state.countryDetails);
+
 	return (
 		<div className={s.container}>
 			<h1 className={s.title}>Country Details</h1>

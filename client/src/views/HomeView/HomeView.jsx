@@ -15,12 +15,12 @@ export default function HomeView() {
 		<div className={s.container}>
 
 			<div className={s.navbar}>
+				
 				<Link to='/home' style={{ textDecoration: 'none' }}>
 					<div className={s.title}>
 						
 						<h1>Countries App</h1>
 						
-
 					</div>
 				</Link>
 
